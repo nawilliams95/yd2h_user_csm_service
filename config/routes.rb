@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
   resources :posts do
     collection do
       get '/public', to: 'posts#public'
