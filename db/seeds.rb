@@ -13,4 +13,4 @@ Post.create ([
     {title: Faker::Book.title, content: Faker::Lorem.paragraphs(number: 2, supplemental: true), author: 'cutiewho', private: true, tags: ['test'], user_id: 1 },
     {title: Faker::Book.title, content: Faker::Lorem.paragraphs(number: 4, supplemental: true), author: 'greenmachine', private: false, tags: ['life'], user_id: 3 }
 ])
-put 'Seeded database'
+puts 'Seeded database'
