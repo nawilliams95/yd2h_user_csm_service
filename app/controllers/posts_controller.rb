@@ -4,13 +4,14 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
-
-    render json: @posts
+   
+    render json: { status: 200, posts: @posts}
   end
 
   # GET /posts/1
   def show
-    render json: @post
+    @fixed_date = date(@post.created_at, @post.updated_at)
+    render json: { status: 200, post: @post, fixed_date: @fixed_date }
   end
 
   # POST /posts
@@ -47,5 +48,12 @@ class PostsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def post_params
       params.require(:post).permit(:title, :content, :author, :private, :tags, :user_id)
+    end
+
+    def date(created_at, updated_at) 
+      {
+        created: Time.at(created_at).strftime("%B %e, %Y at %I:%M %p"),
+        edited: Time.at(updated_at).strftime("%B %e, %Y at %I:%M %p")
+      }
     end
 end
