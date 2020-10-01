@@ -44,6 +44,11 @@ class PostsController < ApplicationController
     render json: { status: 200, public_posts: @public_posts}
   end
 
+  def userpost
+    @user_posts = Post.where('user_id = ?', params[:user_id] )
+    render json: { status: 200, user_posts: @user_posts}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
