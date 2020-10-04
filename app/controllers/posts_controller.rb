@@ -5,19 +5,19 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
    
-    render json: { status: 200, posts: @posts}
+    render json: @posts
   end
 
   # GET /posts/1
   def show
     @fixed_date = date(@post.created_at, @post.updated_at)
-    render json: { status: 200, post: @post, fixed_date: @fixed_date }
+    render json: { post: @post, fixed_date: @fixed_date }
   end
 
   #GET 3 random posts
   def random 
     @random_posts = Post.all.sample(3)
-    render json: {status: 200, random_posts: @random_posts}
+    render json:  @random_posts
   end
 
 
@@ -48,12 +48,12 @@ class PostsController < ApplicationController
 
   def public
     @public_posts = Post.where(private: false)
-    render json: { status: 200, public_posts: @public_posts}
+    render json: @public_posts
   end
 
   def userpost
     @user_posts = Post.where('user_id = ?', params[:user_id] )
-    render json: { status: 200, user_posts: @user_posts}
+    render json: @user_posts
   end
 
   private
