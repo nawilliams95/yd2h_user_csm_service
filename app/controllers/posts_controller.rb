@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:show, :update, :destroy :editshow]
 
   # GET /posts
   def index
@@ -12,6 +12,10 @@ class PostsController < ApplicationController
   def show
     @fixed_date = date(@post.created_at, @post.updated_at)
     render json: { post: @post, fixed_date: @fixed_date }
+  end
+
+  def editshow 
+    render json: @post
   end
 
   #GET 3 random posts
