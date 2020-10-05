@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:show, :update, :destroy, :editshow]
 
   # GET /posts
   def index
@@ -20,6 +20,10 @@ class PostsController < ApplicationController
     render json:  @random_posts
   end
 
+  #Get posts for edit
+  def editshow
+    render json: @post
+  end
 
   # POST /posts
   def create
@@ -53,7 +57,7 @@ class PostsController < ApplicationController
 
   def userpost
     @user_posts = Post.where('user_id = ?', params[:user_id] )
-    render json:  @user_posts}
+    render json: @user_posts
   end
 
   private
